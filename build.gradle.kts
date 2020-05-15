@@ -14,7 +14,9 @@ repositories {
 println("GITHUB REF: ${System.getenv("GITHUB_REF")}")
 
 group = "ru.yandex.cloud"
-version = "1.0.3"
+version = System.getenv("GITHUB_REF")?.let {
+    Regex("refs/tags/v?(.+)").find(it)?.groupValues?.get(1)
+} ?: "0.0.1-SNAPSHOT"
 
 val grpcVersion = "1.28.1"
 val protobufVersion = "3.11.4"
