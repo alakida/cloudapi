@@ -11,8 +11,6 @@ repositories {
     mavenCentral()
 }
 
-println("GITHUB REF: ${System.getenv("GITHUB_REF")}")
-
 group = "ru.yandex.cloud"
 version = System.getenv("GITHUB_REF")?.let {
     Regex("refs/tags/v?(.+)").find(it)?.groupValues?.get(1)
@@ -60,12 +58,20 @@ sourceSets {
     }
 }
 
-tasks.withType<Jar> {
-    from(sourceSets["main"].allSource)
-    configurations.runtimeClasspath.get().filter {
-        it.name.endsWith(".jar")
-    }.forEach { jar ->
-        from(zipTree(jar))
+tasks {
+    jar {
+        from(sourceSets["main"].allSource)
+        configurations.runtimeClasspath.get().filter {
+            it.name.endsWith(".jar")
+        }.forEach { jar ->
+            from(zipTree(jar))
+        }
+    }
+}
+
+tasks.withType<PublishToMavenRepository>().configureEach {
+    doFirst {
+        logger.lifecycle("Artifact version ${project.version}")
     }
 }
 
