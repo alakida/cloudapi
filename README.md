@@ -1,5 +1,7 @@
 # Yandex.Cloud API
 
+![Gradle Package](https://github.com/alakida/cloudapi/workflows/Gradle%20Package/badge.svg)
+
 This repository contains the interface definitions of Yandex.Cloud API. 
 
 For more details see [documentation](https://cloud.yandex.com/docs).
