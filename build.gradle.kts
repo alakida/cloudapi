@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 group = "ru.yandex.cloud"
-version = "1.0.0"
+version = "1.0.2"
 
 val grpcVersion = "1.28.1"
 val protobufVersion = "3.11.4"
@@ -82,11 +82,15 @@ publishing {
         }
     }
     repositories {
+        val actor = System.getenv("GITHUB_ACTOR")
+        val repository = System.getenv("GITHUB_REPOSITORY")
+        println("GITHUB ACTOR: $actor")
+        println("GITHUB REPOSITORY: $repository")
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/alakida/cloudapi")
+            url = uri("https://maven.pkg.github.com/$repository")
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
+                username = actor
                 password = System.getenv("GITHUB_TOKEN")
             }
         }
