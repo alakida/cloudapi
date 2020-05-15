@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 
-println(System.getenv("GITHUB_TAG"))
+println("GITHUB REF: ${System.getenv("GITHUB_REF")}")
 
 group = "ru.yandex.cloud"
 version = "1.0.3"
