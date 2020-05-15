@@ -16,11 +16,12 @@ version = "1.0.0"
 val grpcVersion = "1.28.1"
 val protobufVersion = "3.11.4"
 val protocVersion = protobufVersion
+val javaxAnnotationVersion = "1.3.1"
 
 dependencies {
     implementation("io.grpc:grpc-protobuf:${grpcVersion}")
     implementation("io.grpc:grpc-stub:${grpcVersion}")
-    compileOnly("javax.annotation:javax.annotation-api:1.3.1")
+    compileOnly("javax.annotation:javax.annotation-api:$javaxAnnotationVersion")
     implementation("com.google.protobuf:protobuf-java-util:${protobufVersion}")
     runtimeOnly("io.grpc:grpc-netty-shaded:${grpcVersion}")
 }
