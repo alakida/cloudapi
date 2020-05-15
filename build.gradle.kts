@@ -10,8 +10,11 @@ repositories {
     maven(url = "https://maven-central.storage-download.googleapis.com/repos/central/data/")
     mavenCentral()
 }
+
+println(System.getenv("GITHUB_TAG"))
+
 group = "ru.yandex.cloud"
-version = "1.0.2"
+version = "1.0.3"
 
 val grpcVersion = "1.28.1"
 val protobufVersion = "3.11.4"
@@ -81,17 +84,18 @@ publishing {
             from(components["java"])
         }
     }
+
+    val actor = System.getenv("GITHUB_ACTOR")
+    val token = System.getenv("GITHUB_TOKEN")
+    val repository = System.getenv("GITHUB_REPOSITORY")
+
     repositories {
-        val actor = System.getenv("GITHUB_ACTOR")
-        val repository = System.getenv("GITHUB_REPOSITORY")
-        println("GITHUB ACTOR: $actor")
-        println("GITHUB REPOSITORY: $repository")
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/$repository")
             credentials {
                 username = actor
-                password = System.getenv("GITHUB_TOKEN")
+                password = token
             }
         }
     }
