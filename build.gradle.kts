@@ -16,8 +16,8 @@ version = System.getenv("GITHUB_REF")?.let {
     Regex("refs/tags/v?(.+)").find(it)?.groupValues?.get(1)
 } ?: "0.0.1-SNAPSHOT"
 
-val grpcVersion = "1.28.1"
-val protobufVersion = "3.11.4"
+val grpcVersion = "1.30.0"
+val protobufVersion = "3.12.2"
 val protocVersion = protobufVersion
 val javaxAnnotationVersion = "1.3.1"
 
